@@ -5,6 +5,8 @@
 @section('main-pg-title', __('almadina.admins'))
 @section('page-md-title', __('almadina.index'))
 
+@section('route',route('admin.home'))
+
 @section('styles')
 
 @endsection
