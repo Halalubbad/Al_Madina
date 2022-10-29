@@ -37,7 +37,7 @@
                                 {{ $about->about_text }}
                             </div>
                             <div class="col-lg-3 mb-lg-0 mb-4">
-                                <a href="about.html" target="_blank" rel="noopener noreferrer"
+                                <a href=" {{route('almadina.about')}} " target="_blank" rel="noopener noreferrer"
                                     class="btn btn-primary custom-botton wow fadeInUp" data-wow-duration="1s"
                                     data-wow-delay="0.4s">
                                     اقرأ المزيد
