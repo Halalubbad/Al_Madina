@@ -1,9 +1,6 @@
 @if ($products->isEmpty()){
     {{-- @dd('ddddd') --}}
-    <?php
-        $message = "There no product with this tag"
-    ?>
-    {{$message}}
+    
 }   
 @endif
 @forelse($products as $product)
@@ -28,4 +25,8 @@
     </div>
 
 @empty
+    <?php
+        $message = "There no product with this tag"
+    ?>
+    {{$message}}
 @endforelse

@@ -148,7 +148,7 @@
         <div class="container">
 
             <div class="header">
-                <a href="index.html" class="logo">
+                <a href=" {{route('almadina.home')}} " class="logo">
                     <img src="{{asset('assets/images/Logo.svg')}}" alt="" srcset="" loading="lazy">
                 </a>
 

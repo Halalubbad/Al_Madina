@@ -27,10 +27,11 @@
                     <h2>{{$album->title}}</h2>
                     <p>{{$album->text}}</p>
                     <div class="row">
+                        {{-- main e --}}
                         <div class="col-lg-12">
-                            <figure class="album-img" data-fancybox="gallery"
+                            <figure class="album-img " data-fancybox="gallery"
                                 href="{{ Storage::url($album->video ?? '') }}">
-                                <img src="{{ Storage::url($album->album_images[0]->image ?? '') }}" alt=""
+                                <img  src="{{ Storage::url($album->album_images[0]->image ?? '') }}" alt=""
                                     class="img-fluid" srcset="">
                                 <div class="play">
                                     <i class="fa fa-play" aria-hidden="true"></i>
@@ -40,6 +41,7 @@
                         {{-- {{dd($album_images_count)}} --}}
                         @php
                             $images = $album->album_images->filter(function ($value, $key) {
+                                // dd($value);
                                 return $value->image != null;
                             });
                         @endphp
@@ -53,7 +55,7 @@
                                             data-fancybox="gallery-{{ $album->getKey() }}"
                                             href="{{ Storage::url($Eimage->image ?? '') }}">
 
-                                            <img src="{{ Storage::url($Eimage->image ?? '') }}" alt=""
+                                            <img  src="{{ Storage::url($Eimage->image ?? '') }}" alt=""
                                                 class="img-fluid" srcset=""
                                                 data-fancybox="gallery-{{ $album->getKey() }}">
                                             @if (count($images) > 3 && $loop->iteration == 3)
@@ -73,7 +75,7 @@
                             @endif
                         @endforeach
 
-                        <div style="display:none;">
+                        <div  style="display:none;">
                             @stack('more-image')
                         </div>
                     </div>
@@ -81,4 +83,14 @@
             </div>
         @endforeach
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(".fancybox").fancybox({
+            afterClose: function(){
+            $(".fancybox").css("display","block");
+            }
+        });
+    </script>
 @endsection

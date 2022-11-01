@@ -138,7 +138,6 @@
                     <div class="row" id="updateDiv">
                         @include('al_madina.products.product_filter')
 
-                        {{-- ********** --}}
 
                     </div>
                     {{-- <div class="mx-auto mt-5">
