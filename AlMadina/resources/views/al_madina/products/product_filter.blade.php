@@ -14,7 +14,11 @@
             data-wow-delay="0.2s">
             <figure class="card-img-top">
                 <img src="{{ url(Storage::url($product->image ?? '')) }}" alt="Card image cap">
-                {{-- <span>{{ $product->size->name }}</span> --}}
+                <span>
+                    @foreach ($product->tags->where('parent_id',  $sizeTagType->id) as $tag)
+                        {{ $tag->name }}
+                    @endforeach
+                </span>
             </figure>
             <div class="card-body">
                 <h5 class="card-title">{{ $product->brand->name }}</h5>

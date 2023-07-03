@@ -137,34 +137,17 @@
                         {{-- {{dd($product->tags)}} --}}
                         {{-- {{dd($product->tags[0]->id)}} --}}
                         <div class="col-lg-3 col-md-6">
-                            <a href="http://">
+                            <a href="">
                                 <div class="card product-card  wow fadeInUp" data-wow-duration="1s"
                                     data-wow-delay="0.2s">
                                     <figure class="card-img-top">
                                         <img src="{{ Storage::url($product->image ?? '') }}" alt="Card image cap">
                                         <span>‏
-                                            {{-- @foreach ($parents as $parent)
-                                                @foreach ($parent->childs as $child)
-                                                    @if ($child->name = 'size')
-                                                        {{$child->name}}
-                                                    @endif
-                                                @endforeach
-                                            @endforeach --}}
-                                            {{-- @foreach ($product->tags as $tag)
-                                                @foreach ($product_tags as $pt)
-                                                    @if ($pt->id = $tag->id)
-                                                        {{$tag->name}}
-                                                    @endif
-                                                @endforeach
-                                            @endforeach --}}
-                                            @foreach ($product_tags as $pt)
-                                                @foreach ($product->tags as $tag)
-                                                    @if (($product->id = $pt->product_id) && ($pt->tag_id = $tag->id))
-                                                        {{-- @dd('true') --}}
-                                                        {{-- {{$tag->name}} --}}
-                                                    @endif
-                                                @endforeach
+
+                                            @foreach ($product->tags->where('parent_id', $sizeTagType->id) as $tag)
+                                                {{ $tag->name }}
                                             @endforeach
+
                                         </span>
                                     </figure>
                                     <div class="card-body">

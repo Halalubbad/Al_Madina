@@ -44,34 +44,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/almadina', function () {
-//     return view('al_madina.almadinaHome');
-// });
-
-// Route::get('/about', function () {
-//     return view('al_madina.about')->name('about');
-// });
-
-// Route::get('/products', function () {
-//     return view('al_madina.products');
-// });
-
-// Route::get('/offers', function () {
-//     return view('al_madina.offers');
-// });
-
-// Route::get('/news', function () {
-//     return view('al_madina.news');
-// });
-
-// Route::get('/albums', function () {
-//     return view('al_madina.albums');
-// });
-
-// Route::get('/contact', function () {
-//     return view('al_madina.contact_us');
-// });
-
 Route::prefix('almadina')->group(function(){
 //     Route::view('home', 'al_madina.almadinaHome')->name('almadina.home');
     Route::view('about', 'al_madina.about')->name('about');

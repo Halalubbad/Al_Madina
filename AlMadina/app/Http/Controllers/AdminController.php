@@ -22,6 +22,7 @@ class AdminController extends Controller
         // $editadmin = Admin::where('id','=',1)->get();
         return view('admin.admins.index', ['admins' => $admins, 'request' => $request]);
         // dd();
+        // return $admins;
     }
 
     /**

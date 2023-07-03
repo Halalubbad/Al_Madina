@@ -16,7 +16,14 @@
                             <div class="card product-card">
                                 <figure class="card-img-top">
                                     <img src="{{ url(Storage::url($show->image ?? '')) }}" alt="Card image cap">
-                                    <span>‏330 مل</span>
+                                    {{-- <span>‏330 مل</span> --}}
+                                    <span>‏
+
+                                        @foreach ($show->tags->where('parent_id', $sizeTagType->id) as $tag)
+                                            {{ $tag->name }}
+                                        @endforeach
+
+                                    </span>
                                 </figure>
                             </div>
                         </div>

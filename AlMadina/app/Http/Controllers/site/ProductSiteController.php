@@ -5,13 +5,8 @@ namespace App\Http\Controllers\site;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Product;
-use App\Models\ProductTag;
 use App\Models\Tag;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use LengthException;
-
-use function GuzzleHttp\Promise\all;
 
 class ProductSiteController extends Controller
 {
@@ -23,21 +18,24 @@ class ProductSiteController extends Controller
         $allBrands = Brand::all();
         $parents = Tag::where('parent_id', '=', 0)->get();
 
+        $sizeTagType = Tag::where('name', 'size')->first();
+
         // dd($parents);
         $colorTag = Tag::where('name', '=', 'color')->with('childs')->orderBy('id', 'asc')->get();
         $sizeTag = Tag::where('name', '=', 'size')->with('childs')->orderBy('id', 'asc')->get();
         $tasteTag = Tag::where('name', '=', 'Taste')->with('childs')->orderBy('id', 'asc')->get();
         // dd($tasteTag);
 
-        return view('al_madina.products.products', compact('products', 'allBrands', 'parents', 'colorTag', 'sizeTag', 'tasteTag'));
+        return view('al_madina.products.products', compact('products', 'allBrands', 'parents','sizeTagType' ,'colorTag', 'sizeTag', 'tasteTag'));
     }
 
     public function showProduct(Request $request)
     {
         $id = $request->id;
+        $sizeTagType = Tag::where('name', 'size')->first();
         $show= Product::findOrFail($id);
         if ($show){
-            $view = view('al_madina.products.product_details',compact('show'))->render();
+            $view = view('al_madina.products.product_details',compact('show','sizeTagType'))->render();
             return response()->json(['view'=>$view]);
         }
         return false;
@@ -78,8 +76,9 @@ class ProductSiteController extends Controller
                 $products = $products->whereIn('brand_id', $brand_id );
             }
             $products = $products->get();
+            $sizeTagType = Tag::where('name', 'size')->first();
             // dd($products);
-            $view = view('al_madina.products.product_filter',compact('products'))->render();
+            $view = view('al_madina.products.product_filter',compact('products','sizeTagType'))->render();
         }
         return response()->json(['view' => $view]);
     }

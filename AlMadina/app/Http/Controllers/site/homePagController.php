@@ -30,16 +30,14 @@ class homePagController extends Controller
 
         $brands = Brand::all();
 
-        // $size = Tag::where('name','=','size')->get();
-        // $size = Tag::where('name' ,'=' ,'size')->get();
-        // $sizeTags = Tag::where('parent_id','=',$size[0]->id)->get();
-        $sizeTag = Tag::where('name', '=', 'size')->with('childs')->orderBy('id', 'asc')->get();
-        $product_tags = ProductTag::all();
-
         $parents = Tag::where('parent_id','=',0)->with('childs')->orderBy('id', 'asc')->get();
+
+        $sizeTagType = Tag::where('name', 'size')->first();
         
         $offers = Offer::with('conditions')->get();
+
         $albums = Album::wherehas('album_images')->get();
+        
         $theysaids = Theysaid::all();
         // $album_images = AlbumImage::paginate(6);
 
@@ -50,12 +48,10 @@ class homePagController extends Controller
              'products' => $products,
              'brands' => $brands,
              'offers' => $offers,
-             'sizeTag' => $sizeTag,
-            //  'size' => $size,
              'albums' => $albums,
              'theysaids' => $theysaids,
              'parents' => $parents,
-             'product_tags' => $product_tags
+             'sizeTagType' => $sizeTagType
             ]
         );
     }
